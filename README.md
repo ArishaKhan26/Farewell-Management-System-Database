@@ -1,10 +1,10 @@
-Farewell Management System
+# Farewell Management System
 This repository contains the documentation and design artifacts for the Farewell Management System database project. This project was developed as part of an academic assignment to design a comprehensive database system for managing farewell events. It includes the complete Entity-Relationship Diagram (EERD), relational schema, table descriptions, schema diagrams, and detailed portal descriptions for various user roles.
 ________________________________________
-Overview
+## Overview
 The Farewell Management System is designed to handle multiple aspects of event management. The system supports functionalities such as organizer verification, task assignments, event registration, menu selection with a voting mechanism, and event promotions. It aims to streamline the process of managing farewell events by providing distinct interfaces for organizers and attendees.
 ________________________________________
-Features
+## Features
 •	Comprehensive Database Design:
 o	Detailed Entity-Relationship Diagram (EERD)
 o	Well-structured relational schema
@@ -19,7 +19,7 @@ o	Event Registration Page
 o	Menu and Voting Page
 o	Event on Trend Page (for event promotion)
 ________________________________________
-Database Design
+## Database Design
 EERD
 The project includes an EERD that visually represents the relationships between different entities within the system.
 Relational Schema
@@ -37,7 +37,7 @@ Each table is documented with its respective attributes and keys, ensuring clari
 Schema Diagram
 A detailed schema diagram is included in the documentation, illustrating the connections between tables and reinforcing the integrity of the design.
 ________________________________________
-Portal Descriptions
+## Portal Descriptions
 The project features multiple user interface portals designed for different roles:
 •	Organizer ID Check:
 A secure login interface for event organizers with built-in error handling and ID verification.
