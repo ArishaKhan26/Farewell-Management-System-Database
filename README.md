@@ -1,9 +1,9 @@
 # Farewell Management System
 This repository contains the documentation and design artifacts for the Farewell Management System database project. This project was developed as part of an academic assignment to design a comprehensive database system for managing farewell events. It includes the complete Entity-Relationship Diagram (EERD), relational schema, table descriptions, schema diagrams, and detailed portal descriptions for various user roles.
-________________________________________
+
 ## Overview
 The Farewell Management System is designed to handle multiple aspects of event management. The system supports functionalities such as organizer verification, task assignments, event registration, menu selection with a voting mechanism, and event promotions. It aims to streamline the process of managing farewell events by providing distinct interfaces for organizers and attendees.
-________________________________________
+
 ## Features
 •	Comprehensive Database Design:
 o	Detailed Entity-Relationship Diagram (EERD)
@@ -18,7 +18,7 @@ o	Organizer ID Check (with task assignment)
 o	Event Registration Page
 o	Menu and Voting Page
 o	Event on Trend Page (for event promotion)
-________________________________________
+
 ## Database Design
 EERD
 The project includes an EERD that visually represents the relationships between different entities within the system.
@@ -36,7 +36,7 @@ Table Descriptions
 Each table is documented with its respective attributes and keys, ensuring clarity on the data relationships and constraints.
 Schema Diagram
 A detailed schema diagram is included in the documentation, illustrating the connections between tables and reinforcing the integrity of the design.
-________________________________________
+
 ## Portal Descriptions
 The project features multiple user interface portals designed for different roles:
 •	Organizer ID Check:
@@ -51,6 +51,5 @@ A user-friendly registration portal for attendees to provide personal and logist
 Enables attendees to view the event menu and cast votes for their favorite dishes, influencing the final menu selection.
 •	Event on Trend Page:
 Highlights key events (e.g., "Farewell Batch 2024") with event details and a registration call-to-action.
-________________________________________
 
 
