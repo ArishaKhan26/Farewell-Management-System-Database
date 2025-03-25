@@ -1,0 +1,43 @@
+<script src="js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#organizer-form').on('submit', function(e) {
+            e.preventDefault();
+            var organizerId = $('#organizer-id').val();
+            $.ajax({
+                url: 'http://localhost:3000/api/check-organizer',
+                type: 'POST',
+                data: { id: organizerId },
+                success: function(response) {
+                    if (response.success) {
+                        $('#role-message').html('<p>Your role is: ' + response.role + '</p>');
+                        fetchTasks(response.role, organizerId);  // Fetch tasks based on role
+                    } else {
+                        $('#role-message').html('<p>Failed to find organizer. Please check the ID.</p>');
+                    }
+                },
+                error: function() {
+                    $('#role-message').html('<p>Error processing your request. Please try again.</p>');
+                }
+            });
+        });
+
+        function fetchTasks(role, organizerId) {
+            let url = role === 'Manager' ? 'http://localhost:3000/api/tasks/all' : 'http://localhost:3000/api/tasks/' + organizerId;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(tasks) {
+                    let tasksHtml = '<h3>Tasks</h3>';
+                    tasks.forEach(task => {
+                        tasksHtml += `<p>${task.task_type} - Assigned to: ${task.assigned_to}</p>`;
+                    });
+                    $('#tasks-container').html(tasksHtml);  // Assuming there's a div with id="tasks-container" where tasks are displayed
+                },
+                error: function() {
+                    $('#tasks-container').html('<p>Failed to load tasks.</p>');
+                }
+            });
+        }
+    });
+</script>

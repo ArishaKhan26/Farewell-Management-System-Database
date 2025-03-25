@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eventes Organizer Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- CSS here -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/dripicons.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="home" class="header-area">
+        <div id="header-sticky" class="menu-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <div class="logo">
+                            <a href="index.html"><img src="img/logo/logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="main-menu text-right">
+                            <nav id="mobile-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="events.html">Events</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End of Header -->
+
+    <!-- Main area -->
+    <main>
+        <!-- Organizer Form Area -->
+        <section class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="form-wrap text-center">
+                        <h2>Organizer ID Check</h2>
+                        <form id="organizer-form">
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="organizer-id" placeholder="Enter your Organizer ID" max="20" required>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                        <!-- Element to display the message -->
+                        <div id="role-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks Display Area -->
+        <section class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-wrap text-center">
+                        <h3>Your Tasks</h3>
+                        <!-- Container to display fetched tasks -->
+                        <div id="tasks-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- End of Main area -->
+
+    <!-- Footer -->
+    <footer class="footer-bg footer-p" style="background-image:url(img/footer_bg_img.jpg);background-size: cover;">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-sm-12 text-center">
+                        <div class="footer-widget pt-120 mb-30">
+                            <div class="logo mb-35">
+                                <a href="#"><img src="img/footer_logo.png" alt="logo"></a>
+                            </div>
+                            <div class="footer-text mb-20">
+                                <p>Connecting organizers and volunteers to manage events effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <!-- JS here -->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#organizer-form').on('submit', function(e) {
+                e.preventDefault();
+                var organizerId = $('#organizer-id').val();
+                fetchTasks(organizerId);
+            });
+
+            function fetchTasks(organizerId) {
+                $.ajax({
+                    url: 'http://localhost:3000/api/tasks/' + organizerId,
+                    type: 'GET',
+                    success: function(tasks) {
+                        let tasksHtml = '<h3>Tasks</h3>';
+                        tasks.forEach(task => {
+                            tasksHtml += `<p>${task.task_type} - Assigned to: ${task.assigned_to}</p>`;
+                        });
+                        $('#tasks-container').html(tasksHtml);
+                    },
+                    error: function() {
+                        $('#tasks-container').html('<p>Failed to load tasks. Please try again.</p>');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
